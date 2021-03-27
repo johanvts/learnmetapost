@@ -1,0 +1,4 @@
+baseURL = "http://learnmetapost.com/"
+languageCode = "en-us"
+title = "Learn MetaPost"
+theme = "hugo-theme-techdoc"
