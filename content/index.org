@@ -1,0 +1,20 @@
+---
+title: "Learn Metapost"
+date: 2021-03-27T21:47:24+01:00
+draft: true
+---
+* What is metapost?
+Metapost is a graphics description language for specifying 2d vector graphics,
+it is also a piece of software, the metapost compiler, that converts such a specification to image files.
+
+Metapost is especially suited for describing graphics in a mathematical way and has a powerful build in
+equation solver that enables this.
+
+Metapost is heavily inspired by the Metafont language, which was designed to define
+fonts for TeX, and Metapost is often used in integration with LaTeX, but in this page focuses on  MetaPost and its use as stand alone software.
+
+* What is learnMetaPost.com?
+
+This site aims to help new users get into MetaPost by providing a tutorial style walkthrough of the basics.
+After completing this course you will be able to produce advanced graphics with MetaPost and to explore further on your own.
+For an in-depth covering of MetaPosts many features, please see the excellent MetaPost [[https://www.tug.org/docs/metapost/mpman.pdf][manual]].
