@@ -1,0 +1,84 @@
+---
+title: "Curves and Transformations"
+date: 2021-03-28T23:15:35+02:00
+draft: true
+---
+* Curves and transformations
+** Curves
+So far we have been working with straight lines.
+If you reacall from the lession on variables we said that path variables are specified by points, and instructions for how to connect the points.
+The straigh line is just the simplest way to connect to points, but metapost is also great for softer curved paths.
+
+Lets look at the four points from before:
+> z1=-z2=(1,1);
+> z3=-z4=(-1,1);
+> drawdot z1,z2,z3,z4;
+> draw z1--z2--z3--z4--cycle;
+
+To connect them with a curved path we use ".." rather than the "--" we have been using so far for straight lines.
+
+> draw z1..z3..z4..z4..cycle;
+
+Note that we are free to mix ".." and "--" as we please.
+
+> draw z1..z3--z4--cycle;
+
+** Transformations
+
+We just saw one way of drawing a circle in metapost, we can also use the build in variable "fullcircle".
+Lets draw a two circles next to each other:
+
+> draw fullcircle;
+> draw fullcircle xshifted 2;
+
+xshifted is an example of a transform that simply adds to every x coordinate in the transformed pairs.
+The commonly used transforms are shifted, rotated and scaled and the x/y variations of the first and last.
+
+Shifted is used to translate things around the coordinate system:
+
+> draw fullcircle xshifted 2;
+> draw fullcircle yshifted 2;
+> draw fullcircle shifted 2;
+
+Rotated rotates a pair around the origin a given number of degrees counter-clockwise
+
+> drawarrow (1,1)--((1,1) rotated 90);
+
+Scaled simply multiplies the x, y or both coordinate with a given factor
+
+> draw fullcircle;
+> draw fullcircle xscaled 2;
+> draw fullcircle scaled 2;
+
+*** Combining transforms
+
+We can combine transformations into transform variables, constructed by applying the transforms to the special variable "identity".
+
+> Transform T;
+> T = identity xscaled -1 rotated 45;
+
+> draw fullcicle;
+> draw fullcircle transformed T;
+
+** Exercies
+
+You can specify the direction a curve enters and leaves a point at, by putting an angle or direction keywork in curly braces before or after the point
+in the path definition. For example:
+
+> beginfigure(1);
+> z1=(0,1);
+> z2=(1,0);
+> draw z1{down}..{right}z2;
+
+Would draw a smooth line down from z1, turning left to enter z2 from the right. The directions are given
+along the travel of the path, so a curve entring by going down looks the same as one leaving by going up etc.
+
+> draw z2{down}..{right}z1;
+> draw z2{left}..{up}z1;
+
+The transform "relectedabout(p,q)" can be used to mirror images along the straight line from pair p to pair q.
+
+Using this information along with what we have learned so far, try to draw an image like this:
+
+> mirror.mp
+

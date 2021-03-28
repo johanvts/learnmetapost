@@ -1,0 +1,115 @@
+---
+title: "Loops Functions and Text"
+date: 2021-03-28T23:15:51+02:00
+draft: true
+---
+* Loops, functions and text
+
+** For loops
+
+in the session we will first have a look at the metapost for-loop.
+
+Lets start with a blank figure
+
+> beginfig 1;
+
+We can do a for loop on simple integers like this:
+
+> for i:=0 upto 10:
+> 	dotlabel("",(i,0));
+> endfor	
+
+the upto is a short macro for the call
+
+> for i:0 step 1 until 10:
+
+This full version allows us to work with decimal steps:
+
+> for i:0 0 step .1 until 1:
+> 	dotlabel("",(i,0));
+> endfor
+
+we can use the two functions normal-deviate and uniform deviate to add some random noise:
+
+> for i:0 0 step .1 until 1:
+> 	dotlabel("",(i,uniformdeviate(1)));
+> endfor
+
+But what do we do if we want to draw a smooth path through these points.
+Remember that paths start AND end with a pair. So one option is to do something like:
+
+> for i:0 0 step .1 until 0.9:
+> 	(i,uniformdeviate(1))..(i+0.1,uniformdeviate(1));
+> endfor
+
+Essentially duplicating the inner points.
+But it does not yield a smooth curve like we where looking for, secondly the random noise makes the duplicated appear in dirrerent locations.
+
+Fortunately metapost has a solution to this problem, for-loops can be embedded into path definitions.
+So we can draw the curve like this:
+
+> draw (0,uniformdeviate(1)) for i:0.1 step .1 until 1:
+> 	..(i,uniformdeviate(1));
+> endfor;
+
+We can use this kind of code to draw our own mathematical functions.
+
+** Functions
+in this section we will define and draw a functions.
+Metapost doesn't really have the concept of a function, but it has variable macros that are essentailly the same.
+
+Lets define and draw to probablility density function of the standard normal deviation.
+
+> vardef std_normal(expr x) = 
+> e:=2.71;
+> pi:=3.14;
+> 1/sqrt(2*pi)*(e**-((x/2)**2))
+> enddef;
+
+notice that ** has the same precedence as * in metapost so the paraneteses are needed.
+
+Now we can use a for loop to draw the function
+
+> draw (-1,std_normal(-1)) for i:=-1.1 step 0.1 until 1: ..(i,std_normal(i));
+> endfor;
+
+this gets a bit long if we are drawing several functions, so lets define a macro to draw out math functions.
+In order to pass macros to macro we can use 'scantokens'. This tell metapost to interpret a string as if it was a metpost command.
+Of course we then have to remember to pass our macros as strings.
+
+> vardef functionpath (expr func, a, b)=
+ (a,scantokens func(a)) for i:=a step 1/(10(b-a)) until b: ..(i,scantokens func(i)) endfor;
+enddef;
+
+and replace our code with a call to this marcro:
+
+> draw functionpath("std_normal",-1,1);
+
+** Text
+
+As I said in the beginning metapost is often used to make figures for latex documents, but metapost is also using latex to
+typeset text. You can do some simple text as we have seen already by just putting in strings. But when you need to include variables
+in your strings, or just have more control of how the text looks we use latex to compile our text into images. There are a few diffenret ways
+to put input latex strings in your figures, but the one I find easiest and most powerful is the TEX.mp utility library.
+
+TEX.mp is simply a metapost file thats is distributed with metapost, you should be able to load in into your session by including the line
+
+> input TEX;
+
+Once this file is loaded you can use the TEX function to typeset lables with latex commands.
+For example we can add a labeled x-axis to our figure:
+
+> drawarrow (-1.5,0)--(1.5,0);
+> for i:= -1.5 step 0.5 until 1.5:
+> label(TEX("$"&decimal(i)&"$"),(i,0));
+> endfor
+
+** Exercise 
+
+- Draw a grid like this
+- Draw your own math function on your grid 
+- Add some labels
+
+>grid.mp
+
+
