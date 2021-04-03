@@ -1,4 +1,8 @@
 baseURL = "http://learnmetapost.com/"
 languageCode = "en-us"
 title = "Learn MetaPost"
-theme = "ananke"
+theme = "hugo-theme-techdoc"
+
+[params]
+
+menu_style = "open-menu"

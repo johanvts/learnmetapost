@@ -4,16 +4,16 @@ date: 2021-03-28T23:11:15+02:00
 draft: true
 ---
 * Getting started
-** What is metapost?
-Metapost is a graphics description language for specifying 2d vector graphics,
-it is also a piece of software, the metapost compiler, that converts such a specification to image files.
+** What is MetaPost?
+MetaPost is a 2D-graphics description language for specifying vector graphics.
+It is also a piece of software, the MetaPost compiler, that renders such a specification to image files.
 
-Metapost is especially suited for describing graphics in a mathematical way and has a powerful build in
+MetaPost is especially suited for describing graphics in a mathematical way and has a powerful build in
 equation solver that enables this.
 
-Metapost is heavily inspired by the Metafont language, which was designed to define
+MetaPost is heavily inspired by the Metafont language, which was designed to define
 fonts for TeX, and Metapost is often used in integration with LaTeX, but in this course we will
-focuse soley on metapost and use it as stand alone software.
+focus on using MetaPost as stand-alone software.
 
 ** In this course
 
@@ -21,8 +21,17 @@ This course will cover the basics of installing and using metapost. After comple
 produce advanced graphics like this. However this course is meant as an introduction and there are plenty of features of metapost we
 will not cover, at the end of the course we will discuss sources for further learning.
 
+** Prerequisites
+
+We will need a few things before we can start using MetaPost:
+
+1. A terminal of some sort. I will be using Powershell on Windows but really any shell/terminal/command prompt should be fine.
+2. A plain text editor, I'll be using notepad.
+3. A place to work. MetaPost will generate a few files, it is easier to see whats going on if you start your work in an empty folder.
+ 
+
 ** Installing metapost
-As I said, metapost is often used in conjunction with LaTeX and many TeX distributions include metapost. The simplest way to
+MetaPost is often used in conjunction with LaTeX and many TeX distributions include metapost. The simplest way to
 get metapost installed on your computer is to install one of the widely avaiable latex distributions that include it. 
 Here we will use MikTex, you can find a link in the description.
 
@@ -31,7 +40,9 @@ https://miktex.org/howto/install-miktex
 Once you have MikTex installed you should be able to open your command prompt or terminal and issue the command mpost(.exe).
 You should see a response like this:
 
-You are looking at the metapost compiler, waiting for you to input some metapost code.
+{{< figure src="/images/run_mpost.PNG" title="Running MetaPost from Powershell in Windows Terminal." >}}
+
+You are looking at the MetaPost compiler, waiting for you to input some metapost code.
 Normally we will be passing a source file along to the compiler with our code, but you could type it directly in here.
 
 You can press ctrl-X to exit the metapost compiler.
@@ -40,63 +51,72 @@ As you can see, we will be using metapost 2.0 for this course, if you have an ol
 so please check that your version number is at least 2.0.
 
 ** Hello world
-Now that metapost is install lets write our first metapost figure.
-Create a text file, lets call it "helloWorld.mp", we typicall use the .mp extension for metapost files.
+Now that MetaPost is installed lets create our first figure.
 
-> Open "HelloWorld.mp"
+Create a text file, lets call it "HelloWorld.mp". We typically use the .mp extension for MetaPost files.
+Copy the text below into you file, we will be going through it line by line.
 
-By default metapost produces encapsulated post-script, which i great for including in a larger file when you are working with
-latex, but since we will be using metapost standalone for this course we will prefer to produce PNG output.
-To instruct Metapost to output png we write
+#+BEGIN_SRC
+outputformat := "png";
 
-> outputtemplate := "png"
+beginfig(1)
+label("Hello World",origin);
+endfig
 
-You can also set this to generate svg output.
-This is an example of setting an internal variable, that is a vairiable that we wil not be using in our code, but rather are used
-to configure the metapost interpreter. 
+end
+#+END_SRC
+
+
+By default MetaPost produces encapsulated post-script files, this format is great for including images in a larger file when you are working with
+LaTeX, but since we will be using MetaPost stand-alone for this course we will prefer to produce PNG output.
+To instruct MetaPost to output PNG our first command will be:
+
+> outputformat := "png"
+
+This is an example of setting an internal variable, 'outputtemplate' is a variable that we wil not be using in our code, but rather it is used
+to configure the MetaPost interpreter. You can also set it to "svg" to generate svg output.
 
 To begin a figure we write
 
 > beginfig(1)
 
 The 1 is a name for our figure, by default metapost will include this number as the file extension of the figure output.
-
 To write some text on our figure we can use a label
-> label("Hello World",origin)
+
+> label("Hello World",origin);
 
 as you probably guessed origin places the text at the (0,0) coordinate.
 
 now we end the figure, and since we don't want to include more figures in this file we end the file as well with end
-> endfigure;
+> endfig
 > end
 
-generally lines are terminated with ;, but its not necessary for the last line.
+generally lines are terminated with ;, but its not necessary for ending the figure.
 
-Save the file and return to your terminal. If metapost is correctly installed you should be able to input
+Save the file and return to your terminal. 
 
-> mpost(.exe) HelloWorld.mp
+If MetaPost is correctly installed you should be able to input
 
-and hopefully somewhere you will see "Sucessfully output HelloWorld.1".
-Congratulations, you just produced you first metapost figure. 
+> mpost.exe HelloWorld.mp
 
-This will be your figure, open it op and have a look. You might have to rename it to .png, we will look into this in the
+and hopefully somewhere you will see an output similar to this:
+
+{{< figure src="/images/helloWorld.PNG" title="Asking MetaPost to process our first figure." >}}
+
+Congratulations, you just produced the file "HelloWorld.1". 
+This will be your figure, open it op and have a look. You might have to rename it to .png to make it recognisable as a PNG image, we will look into this in the
 exercises.
 
-You will notice that the text we wrote is very small. 
-There are two internal variables control the resolution of the png output: hppp, vppp.
-They control the hoirzontal/vertical points pr. pixel which determine the image resolution, having fewer points pr. pixel make images larger.
+{{< figure src="/images/HelloWorld.1" title="Our first figure." >}}
 
-** Tooling
-As you have seen, the metapost work
-To make it easier to see what we are doing I will be using a few tools for this course. 
-I put the links in the description if you want to use do the same setup, but I recommend just using your favorite text
-editor and focusing on metapost first. For the rest of the course, you will see my metapost source file in this window,
-the corresponding png output in this window, and the output from the metapost interpreter down here.
+You will notice that the text we wrote is very small, again we will improve this in the exercises.
 
 ** Exercises
 
-   outputformattemplate is by default set to "%j.%c".%j referes to the filename
-and %c to the figure number. Experiemnt with setting these three variables to produced a png output with the .png file extension and a higher resolution than "HelloWorld.1".
+"outputtemplate" is another internal variable that controls the filenames(including file extensions) of MetaPost output. It is by default set to "%j.%c".Here %j referes to the input filename and %c to the figure number. 
+There are another two internal variables control the resolution of the png output: "hppp" and "vppp".
+They control the hoirzontal/vertical points pr. pixel which determine the image resolution, having fewer points pr. pixel make images larger.
+
+Experiment with setting these three variables to produced a png output with the .png file extension and a higher resolution than "HelloWorld.1".
 
 You can also experiment with producing svg and postscript output.
-
