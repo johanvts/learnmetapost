@@ -73,7 +73,7 @@ To instruct MetaPost to output PNG our first command will be:
 
 > outputformat := "png"
 
-This is an example of setting an internal variable, 'outputtemplate' is a variable that we wil not be using in our code, but rather it is used
+This is an example of setting an internal variable, 'outputformat' is a variable that we wil not be using in our code, but rather it is used
 to configure the MetaPost interpreter. You can also set it to "svg" to generate svg output.
 
 To begin a figure we write
