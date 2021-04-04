@@ -6,3 +6,5 @@ theme = "hugo-theme-techdoc"
 [params]
 
 menu_style = "open-menu"
+menu_exclusion = ["archives"]
+

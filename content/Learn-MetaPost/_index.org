@@ -1,0 +1,11 @@
+---
+title: "Learn MetaPost"
+date: 2021-03-28T23:11:15+02:00
+draft: false
+---
+
+* [[./learn-metapost/getting-started][Getting Started]]
+Prerequisites, installation and our first figure...
+
+* [[./learn-metapost/variables-and-equations][Variables and Equations]]
+Our first encounter with the MetaPost equation solver.

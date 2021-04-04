@@ -1,35 +1,16 @@
 ---
 title: "Getting Started"
-date: 2021-03-28T23:11:15+02:00
+date: 2021-04-03T23:11:15+02:00
 draft: false
 ---
-* Getting started
-** What is MetaPost?
-MetaPost is a 2D-graphics description language for specifying vector graphics.
-It is also a piece of software, the MetaPost compiler, that renders such a specification to image files.
-
-MetaPost is especially suited for describing graphics in a mathematical way and has a powerful build in
-equation solver that enables this.
-
-MetaPost is heavily inspired by the Metafont language, which was designed to define
-fonts for TeX, and Metapost is often used in integration with LaTeX, but in this course we will
-focus on using MetaPost as stand-alone software.
-
-** In this course
-
-This course will cover the basics of installing and using metapost. After completing the course you will be able to 
-produce advanced graphics like this. However this course is meant as an introduction and there are plenty of features of metapost we
-will not cover, at the end of the course we will discuss sources for further learning.
-
-** Prerequisites
-
+* Prerequisites
 We will need a few things before we can start using MetaPost:
 
 1. A terminal of some sort. I will be using Powershell on Windows but really any shell/terminal/command prompt should be fine.
 2. A plain text editor, I'll be using notepad.
 3. A place to work. MetaPost will generate a few files, it is easier to see whats going on if you start your work in an empty folder.
  
-** Installing metapost
+* Installing metapost
 MetaPost is often used in conjunction with LaTeX and many TeX distributions include metapost. The simplest way to
 get metapost installed on your computer is to install one of the widely avaiable latex distributions that include it. 
 Here we will use MikTex, you can find a link in the description.
@@ -41,15 +22,15 @@ You should see a response like this:
 
 {{< figure src="/images/run_mpost.PNG" title="Running MetaPost from Powershell in Windows Terminal." >}}
 
-You are looking at the MetaPost compiler, waiting for you to input some metapost code.
-Normally we will be passing a source file along to the compiler with our code, but you could type it directly in here.
+You are looking at the MetaPost compiler, waiting for you to feed it some MetaPost code.
+Normally we will be passing a source file location along when calling the compiler, but you could type it directly in here.
 
-You can press ctrl-X to exit the metapost compiler.
+You can press =ctrl-X= to exit the metapost compiler.
 
 As you can see, we will be using metapost 2.0 for this course, if you have an older version some things might not work as expected
 so please check that your version number is at least 2.0.
 
-** Hello world
+* Hello world
 Now that MetaPost is installed lets create our first figure.
 
 Create a text file, lets call it "HelloWorld.mp". We typically use the .mp extension for MetaPost files.
@@ -113,7 +94,7 @@ exercises.
 
 You will notice that the text we wrote is very small, again we will improve this in the exercises.
 
-** Exercises
+* Exercises
 
 =outputtemplate= is another internal variable. It controls the filenames (including file extensions) of MetaPost output. 
 By default =outputtemplate= is set to "%j.%c".
