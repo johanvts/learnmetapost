@@ -105,3 +105,11 @@ Having fewer points pr. pixel make images larger.
 Experiment with setting these three variables to produced a png output with the .png file extension and a higher resolution than "HelloWorld.1".
 
 You can also experiment with producing svg and postscript output.
+
+** Hint
+#+BEGIN_SRC
+outputformat := "png";
+outputtemplate := "%j.png";
+hppp := 0.25;
+vppp := 0.25;
+#+END_SRC

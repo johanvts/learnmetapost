@@ -58,13 +58,14 @@ draw l;
 #+END_SRC
 
 * Collection of variables
-Sometimes we want to declare a collection of variables. We can do that by writing
+
+Sometimes we want to declare a collection of variables. We can do that by writing =[]= after a variable declaration.
 
 #+BEGIN_SRC
 pair A[];
 #+END_SRC
 
-A is now an array of pairs, we can address them by suffixing A with a number:
+A is now an array of pairs, we can address the individual pairs by suffixing =A= with a number:
 
 #+BEGIN_SRC
 pair A[];
@@ -72,17 +73,13 @@ A0 := (1,1);
 A1 := (2,2);
 #+END_SRC
 
-By default MetaPost declares variables =x= and =y= as arrays of numerics and =z(suffix)= as the tuple =(x(suffix),y(suffix))=.
+By default MetaPost declares variables =x= and =y= as arrays of numerics and =z= as an array of pairs.
+And it maintains the relationship =z(suffix)=(x(suffix),y(suffix))=.
 We can use this to skip declarations if we only need a single collection of points in our figure, for example in this figure:
 
 {{< figure src="/images/usingz.png" title="Using point to draw a line." >}}
 
 #+BEGIN_SRC
-outputformat := "png";
-outputtemplate := "%j.png";
-hppp := 0.25;
-vppp := 0.25;
-
 beginfig(1)
   x1 = y1 = 10;
   x2 = y2 = 20;
