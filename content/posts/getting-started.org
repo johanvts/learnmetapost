@@ -29,7 +29,6 @@ We will need a few things before we can start using MetaPost:
 2. A plain text editor, I'll be using notepad.
 3. A place to work. MetaPost will generate a few files, it is easier to see whats going on if you start your work in an empty folder.
  
-
 ** Installing metapost
 MetaPost is often used in conjunction with LaTeX and many TeX distributions include metapost. The simplest way to
 get metapost installed on your computer is to install one of the widely avaiable latex distributions that include it. 
@@ -71,35 +70,38 @@ By default MetaPost produces encapsulated post-script files, this format is grea
 LaTeX, but since we will be using MetaPost stand-alone for this course we will prefer to produce PNG output.
 To instruct MetaPost to output PNG our first command will be:
 
-> outputformat := "png"
+#+BEGIN_SRC
+outputformat := "png"
+#+END_SRC
 
 This is an example of setting an internal variable, 'outputformat' is a variable that we wil not be using in our code, but rather it is used
 to configure the MetaPost interpreter. You can also set it to "svg" to generate svg output.
 
 To begin a figure we write
 
-> beginfig(1)
+#+BEGIN_SRC
+beginfig(1)
+#+END_SRC
 
 The 1 is a name for our figure, by default metapost will include this number as the file extension of the figure output.
-To write some text on our figure we can use a label
+To write some text on our figure we can use a *label*.
 
-> label("Hello World",origin);
-
-as you probably guessed origin places the text at the (0,0) coordinate.
-
-now we end the figure, and since we don't want to include more figures in this file we end the file as well with end
-> endfig
-> end
-
+#+BEGIN_SRC
+label("Hello World",origin);
+#+END_SRC
+as you can probably guess this places the text "Hello World" at origin (i.e. at the (0,0) coordinate).
+Now we end the figure, and since we don't want to include more figures in this file we end the file as well with end
+#+BEGIN_SRC
+endfig
+end
+#+END_SRC
 generally lines are terminated with ;, but its not necessary for ending the figure.
-
-Save the file and return to your terminal. 
-
-If MetaPost is correctly installed you should be able to input
-
-> mpost.exe HelloWorld.mp
-
-and hopefully somewhere you will see an output similar to this:
+Save the file and return to your terminal.
+If MetaPost is correctly installed you should be able to issue the command.
+#+BEGIN_SRC
+mpost.exe HelloWorld.mp
+#+END_SRC
+Hopefully you will see an output similar to this:
 
 {{< figure src="/images/helloWorld.PNG" title="Asking MetaPost to process our first figure." >}}
 
@@ -113,9 +115,11 @@ You will notice that the text we wrote is very small, again we will improve this
 
 ** Exercises
 
-"outputtemplate" is another internal variable that controls the filenames(including file extensions) of MetaPost output. It is by default set to "%j.%c".Here %j referes to the input filename and %c to the figure number. 
-There are another two internal variables control the resolution of the png output: "hppp" and "vppp".
-They control the hoirzontal/vertical points pr. pixel which determine the image resolution, having fewer points pr. pixel make images larger.
+=outputtemplate= is another internal variable. It controls the filenames (including file extensions) of MetaPost output. 
+By default =outputtemplate= is set to "%j.%c".
+Here =%j= referes to the input filename and =%c= to the figure number. 
+=hppp= and =vppp= are another two internal variables, they control the resolution of the png output by setting hoirzontal/vertical points pr. pixel which defaults to 1. 
+Having fewer points pr. pixel make images larger.
 
 Experiment with setting these three variables to produced a png output with the .png file extension and a higher resolution than "HelloWorld.1".
 
