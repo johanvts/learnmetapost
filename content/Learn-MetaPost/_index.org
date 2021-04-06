@@ -7,5 +7,8 @@ draft: false
 * [[./learn-metapost/getting-started][Getting Started]]
 Prerequisites, installation and our first figure...
 
-* [[./learn-metapost/variables-and-equations][Variables and Equations]]
-Our first encounter with the MetaPost equation solver.
+* [[./learn-metapost/variables][Variables]]
+An overview of the most used varialbe types and how to declare and assing them.
+
+* [[./learn-metapost/equations][Equations]]
+A first look at the MetaPost equation solver.

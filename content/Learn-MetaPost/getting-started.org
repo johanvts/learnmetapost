@@ -1,6 +1,6 @@
 ---
 title: "Getting Started"
-date: 2021-04-03T23:11:15+02:00
+date: 2021-04-04T23:11:15+02:00
 draft: false
 ---
 * Prerequisites

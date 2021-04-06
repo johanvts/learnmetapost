@@ -1,0 +1,114 @@
+---
+title: "Equations"
+date: 2021-04-01T21:15:26+02:00
+draft: false
+---
+* Equality operator
+
+MetaPost differs from many other programming languages in that it does not use === to assign values to variables, for that we use the assignment operator =:==.
+The equality operator  === is used, just as it is in mathematics, to declare that the right and left hand sides are equal.
+Whenever we write === we are specifying equations, and MetaPost will try to resolve them by assigning values to unknow variables to make the equality statement true.
+This difference can seem subtle at first: If we write an unassigned variable left of === the solution is simply to assign the value on the right, and thus === works just like =:== would.
+However, having a build in equation solver radically changes how programs are written and its a very powerfull component of the MetaPost programming language.
+
+Let's start with an example.
+Recall that =z1= is shorthand for =(x1,y1)= and try to run this file:
+
+#+BEGIN_SRC
+z1 = (1,1);
+x1 = 2;
+#+END_SRC
+
+You will get an =Inconsistent equation= error, since MetaPost cannot resolve 1=2.
+
+{{< figure src="/images/Inconsistent.PNG" title="1 does not equal 2." >}}
+
+Now try this file instead:
+#+BEGIN_SRC
+z1 = (1,1);
+x1 = a*2;
+show a;
+end
+#+END_SRC
+
+Here the equation has a solution and MetaPost correctly solves the equation to find the value of the numeric =a=.
+We can use =show= to make MetaPost print the value in its output.
+
+{{< figure src="/images/Consistent.PNG" title="Using show to expect the value of a." >}}
+
+** Drawing a triangle
+
+The build-in equation solver is hugely powerfull for drawing figures of mathematical concepts without having to assign absolute positions.
+Consider a simple right triangle with points =A,B,C= and a right angle at =C=.
+If we didn't have an equation solver at hand we might specify something like:
+
+#+BEGIN_SRC
+pair A,B,C;
+a = b = 1;
+C = Origin;
+A = C - (a,0);
+B = C + (0,b);
+#+END_SRC
+
+However, the right triangle as a concept is not really attaced to details like the lenght of the legs or it's position in the coordinate system.
+So we can skip those details and just write:
+
+#+BEGIN_SRC
+numeric a,b;
+pair A,B,C;
+A = C - (a,0);
+B = C + (0,b);
+#+END_SRC
+
+To acutally draw the triangle we would still need to fill in the blanks of course, but when and how is entirely up to us.
+By delaying these decision we can easily build complex figures that adapt to changes wih minimal work.
+
+For example the only change to go from the left to the righ below if to alter =C=G= to =A=G=.
+
+{{< figure src="/images/transformation.png" title="Moving a well defined traiangle" >}}
+
+
+
+** Whatever
+
+MetaPost can handle all linear equations, also involving pairs.
+Lets draw a simple X.
+
+> z1=-z2=(1,1);
+> z3=-z4=(-1,1);
+> draw z1--z2, z3--z4;
+
+Recall that z is a reserved varialbe for storing paris. You will notice how we used equality with the fact that "-" mirrors values around 0.
+
+Next we will use the special syntax "fraction[pair1,pair2]" to find the place where the two lines cross.
+This syntax yields the pair at "fraction" of the way along a straight line from pair1 to pair2.
+In this simple case we know that the paths intersect at 1/2[z1,z3], but we can use the equation solver to find
+the answer (1/2) as well. Since we don't really need to store that fraction, but just the coordinats of the point,
+we will use the special keyword "whatever" to denote an anonumus variable. That was a lot of information, but I think
+you will find it quite intuitive to use:
+
+We write
+
+> z5 = whatever[z1,z2];
+ 
+which simply says that z5 is equal to some point on the line between z1 and z2.
+If we add the equation:
+
+> z5 = whatever[z3,z4];
+
+there is suddenly only one solution, we can draw it out using the command 'dotlabel', which is like 'label' that we used in the hello world example, but with a dot marking the location
+of the label.
+
+> dotlabel("z5 solution",z5);
+
+If we want to find intersections between more complicated not-straight paths we can use the "(path) intersectionpoint (path)" command.
+
+* Exercise
+
+Use what you have seen to draw the following figure:
+
+You can use |lft|rt|top|bot|ulft|urt|llft|lrt to control the relative location of a label like so:
+
+dotlabel.rt("rt",origin);
+
+> thirds_box.mp
