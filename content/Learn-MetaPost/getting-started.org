@@ -9,15 +9,15 @@ We will need a few things before we can start using MetaPost:
 1. A terminal of some sort. I will be using Powershell on Windows but really any shell/terminal/command prompt should be fine.
 2. A plain text editor, I'll be using notepad.
 3. A place to work. MetaPost will generate a few files, it is easier to see whats going on if you start your work in an empty folder.
- 
-* Installing metapost
+   
+* Installing MeTapost
 MetaPost is often used in conjunction with LaTeX and many TeX distributions include metapost. The simplest way to
-get metapost installed on your computer is to install one of the widely avaiable latex distributions that include it. 
-Here we will use MikTex, you can find a link in the description.
+get MetaPost installed on your computer is to install one of the widely avaiable TeX distributions that include it. 
+Here we will use MikTeX:
 
 https://miktex.org/howto/install-miktex
 
-Once you have MikTex installed you should be able to open your command prompt or terminal and issue the command mpost(.exe).
+Once you have MikTeX installed you should be able to open your command prompt or terminal and issue the command =mpost= or =mpost.exe= on Windows.
 You should see a response like this:
 
 {{< figure src="/images/run_mpost.PNG" title="Running MetaPost from Powershell in Windows Terminal." >}}
@@ -27,7 +27,7 @@ Normally we will be passing a source file location along when calling the compil
 
 You can press =ctrl-X= to exit the metapost compiler.
 
-As you can see, we will be using metapost 2.0 for this course, if you have an older version some things might not work as expected
+As you can see, we will be using MetaPost 2.0 for this course, if you have an older version some things might not work as expected
 so please check that your version number is at least 2.0.
 
 * Hello world
@@ -64,7 +64,7 @@ To begin a figure we write
 beginfig(1)
 #+END_SRC
 
-The 1 is a name for our figure, by default metapost will include this number as the file extension of the figure output.
+The 1 is a number for our figure, by default MetaPost will include this number as the file extension of the figure output.
 To write some text on our figure we can use a *label*.
 
 #+BEGIN_SRC
@@ -76,7 +76,7 @@ Now we end the figure, and since we don't want to include more figures in this f
 endfig
 end
 #+END_SRC
-generally lines are terminated with ;, but its not necessary for ending the figure.
+generally lines are terminated with ;, but its not necessary for ending the last figure and file.
 Save the file and return to your terminal.
 If MetaPost is correctly installed you should be able to issue the command.
 #+BEGIN_SRC
@@ -109,7 +109,7 @@ You can also experiment with producing svg and postscript output.
 ** Hint
 #+BEGIN_SRC
 outputformat := "png";
-outputtemplate := "%j.png";
+outputtemplate := "%j_%c.png";
 hppp := 0.25;
 vppp := 0.25;
 #+END_SRC

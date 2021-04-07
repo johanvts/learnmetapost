@@ -36,9 +36,9 @@ We can use =show= to make MetaPost print the value in its output.
 
 {{< figure src="/images/Consistent.PNG" title="Using show to expect the value of a." >}}
 
-** Drawing a triangle
+* Drawing a triangle
 
-The build-in equation solver is hugely powerfull for drawing figures of mathematical concepts without having to assign absolute positions.
+The build-in equation solver is very usefull for drawing figures of mathematical concepts without having to assign absolute positions.
 Consider a simple right triangle with points =A,B,C= and a right angle at =C=.
 If we didn't have an equation solver at hand we might specify something like:
 
@@ -61,54 +61,129 @@ B = C + (0,b);
 #+END_SRC
 
 To acutally draw the triangle we would still need to fill in the blanks of course, but when and how is entirely up to us.
+We might fix =a=,=b=, and =C= as in the first example, but we are also free to instead fix say =A,B= and =C=, or =A,B= and =a,b= or any other way.
+Whichever way we choose the remaining variables will be assigned by the equation solver and can be used elsewhere.
+
 By delaying these decision we can easily build complex figures that adapt to changes wih minimal work.
 
-For example the only change to go from the left to the righ below if to alter =C=G= to =A=G=.
+For example the only difference in the code for the left and right figure below is whether =G=C= or =G=A=.
 
-{{< figure src="/images/transformation.png" title="Moving a well defined traiangle" >}}
+{{< figure src="/images/transformation.png" title="Moving a well defined triangle" >}}
 
+#+BEGIN_SRC
+beginfig(1);
+  numeric a,b;
+  pair A,B,C,G;
+  A = C - (a,0);
+  B = C + (0,b);
+  G = point 4 of fullcircle scaled 2cm;
+  a=b=2cm;
+  G=A; %Or G=C
+  draw A--B--C--cycle;
+  draw fullcircle scaled 2cm;
+  dotlabel.llft("G",G);
+endfig
+#+END_SRC
 
+* Intersection
 
-** Whatever
-
-MetaPost can handle all linear equations, also involving pairs.
 Lets draw a simple X.
 
-> z1=-z2=(1,1);
-> z3=-z4=(-1,1);
-> draw z1--z2, z3--z4;
+{{< figure src="/images/cross_1.png" title="X marks the spot." >}}
 
-Recall that z is a reserved varialbe for storing paris. You will notice how we used equality with the fact that "-" mirrors values around 0.
+#+BEGIN_SRC
+beginfig(1);
+  z1=-z2=(0.58,1);
+  z3=-z4=(-.89,1);
+  draw z1--z2;
+  draw z3--z4;
+endfig
+#+END_SRC
 
-Next we will use the special syntax "fraction[pair1,pair2]" to find the place where the two lines cross.
-This syntax yields the pair at "fraction" of the way along a straight line from pair1 to pair2.
-In this simple case we know that the paths intersect at 1/2[z1,z3], but we can use the equation solver to find
-the answer (1/2) as well. Since we don't really need to store that fraction, but just the coordinats of the point,
-we will use the special keyword "whatever" to denote an anonumus variable. That was a lot of information, but I think
-you will find it quite intuitive to use:
+Make sure you understand how equality and negation was used to define the four corners of the cross.
 
-We write
+Now lets say we wanted to draw a horisontal line from the point of intersection.
+We could of course calculate where the two lines meet, but MetaPost will do it for us.
+The syntax =fraction[pair1,pair2]= denotes the point a =fraction= along the line from =pair1= to =pair2=.
+Using this syntax we specify a point =I= thats is at some fraction of both lines in the cross, the only solution being the intersection point.
 
-> z5 = whatever[z1,z2];
- 
-which simply says that z5 is equal to some point on the line between z1 and z2.
-If we add the equation:
+#+BEGIN_SRC
+numeric a,b;
+pair I;
+I = a[z1,z2] = b[z3,z4];
+#+END_SRC
 
-> z5 = whatever[z3,z4];
+Since we won't need the values of =a,b= going forward we can avoid declaring them by using the special name =whatever= to stand in for an anonymous variable.
 
-there is suddenly only one solution, we can draw it out using the command 'dotlabel', which is like 'label' that we used in the hello world example, but with a dot marking the location
-of the label.
+#+BEGIN_SRC
+pair I;
+I = whatever[z1,z2] = whatever[z3,z4];
+#+END_SRC
 
-> dotlabel("z5 solution",z5);
+{{< figure src="/images/cross_2.png" title="Line from intersection." >}}
 
-If we want to find intersections between more complicated not-straight paths we can use the "(path) intersectionpoint (path)" command.
+If we want to find intersections between more complicated not-straight paths we can use the =(path) intersectionpoint (path)= command.
+The full code for the crosses above uses a few extra tricks including the =dotlabel= command and a variable for scaling (=u=).
+
+#+BEGIN_SRC
+outputformat := "png";
+outputtemplate := "%j_%c.png";
+hppp := 0.25;
+vppp := 0.25;
+u:=1cm;
+pair a,b,c,d;
+a=-b=(0.58u,1u);
+c=-d=(-.89u,1u);
+
+
+beginfig(1);
+  draw a--b;
+  draw c--d;
+endfig;
+
+beginfig(2);
+  draw a--b;
+  draw c--d;
+  
+  pair I;
+  I = whatever[a,b] = whatever[c,d];
+
+  draw I--(I+(1u,0));
+  dotlabel.top("I",I);
+endfig
+end
+#+END_SRC
 
 * Exercise
 
 Use what you have seen to draw the following figure:
 
-You can use |lft|rt|top|bot|ulft|urt|llft|lrt to control the relative location of a label like so:
+{{< figure src="/images/cross_3.png" title="Multiple intersections." >}}
 
-dotlabel.rt("rt",origin);
+To draw labeled dots you can use the =dotlabel= command along with the controls =|lft|rt|top|bot|ulft|urt|llft|lrt= to
+set the relative location of a label like so:
 
-> thirds_box.mp
+=dotlabel.rt("label",pair)=
+
+** Hint
+
+#+BEGIN_SRC
+beginfig(3)
+  z1=(0,-0.5u);
+  z2=(-0.5u,1u);
+  z3=(-1u,0.2u);
+  z4=(1u,0.2u);
+  z5=z3+(0,0.5u);
+  z6=z4+(0,0.5u);
+  draw z1--z2;
+  draw z3--z4;
+  draw z5--z6;
+
+  pair a,b;
+  a = whatever[z1,z2]=whatever[z3,z4];
+  b = whatever[z1,z2]=whatever[z5,z6];
+
+  dotlabel.urt("a",a);
+  dotlabel.urt("b",b);
+endfig
+#+END_SRC

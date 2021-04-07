@@ -92,7 +92,7 @@ end
 
 Use variables to draw a line through three points.
 
-Hint:
+** Hint
 
 {{< figure src="/images/line.png" title="A line through three points." >}}
 
