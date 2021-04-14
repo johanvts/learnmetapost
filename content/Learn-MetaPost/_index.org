@@ -9,6 +9,7 @@ Prerequisites, installation and our first figure...
 
 * [[./learn-metapost/variables][Variables]]
 An overview of the most used varialbe types and how to declare and assing them.
-
+* [[./learn-metapost/curves-and-transformations][Curves and Transformations]]
+Drawing curved paths and applying transformations.
 * [[./learn-metapost/equations][Equations]]
 A first look at the MetaPost equation solver.

@@ -1,84 +1,132 @@
 ---
 title: "Curves and Transformations"
-date: 2021-03-28T23:15:35+02:00
-draft: true
+date: 2021-04-01T21:15:26+02:00
+draft: false
 ---
-* Curves and transformations
-** Curves
-So far we have been working with straight lines.
-If you reacall from the lession on variables we said that path variables are specified by points, and instructions for how to connect the points.
-The straigh line is just the simplest way to connect to points, but metapost is also great for softer curved paths.
+* Curves
+So far we have been working with straight lines, but MetaPost is also great at drawing smooth curved paths.
+If you recall from the chapter on [[https://www.learnmetapost.com/learn-metapost/variables/][variables]] a =path= is simply a combination of pairs and connections between them.
 
-Lets look at the four points from before:
-> z1=-z2=(1,1);
-> z3=-z4=(-1,1);
-> drawdot z1,z2,z3,z4;
-> draw z1--z2--z3--z4--cycle;
+{{< figure src="/images/curves_1.png" title="z1--z2--z3--z4--cycle" >}}
 
-To connect them with a curved path we use ".." rather than the "--" we have been using so far for straight lines.
+To connect them with a curved path we use =..= rather than the =--= we have been using so far for straight lines, we can mix =..= and =--= as we please.
 
-> draw z1..z3..z4..z4..cycle;
+{{< figure src="/images/curves_2.png" title="z1--z2..z3..z4--cycle" >}}
 
-Note that we are free to mix ".." and "--" as we please.
+{{< figure src="/images/curves_3.png" title="draw z1..z2..z3..z4..cycle dashed evenly. Full code below." >}}
 
-> draw z1..z3--z4--cycle;
+#+BEGIN_SRC
+beginfig(3);
+  z1=-z4=(-1u,1u);
+  z3=-z2=(1u,1u);
+  dotlabel.top("z1",z1);
+  dotlabel.bot("z2",z2);
+  dotlabel.top("z3",z3);
+  dotlabel.bot("z4",z4);
+  draw z1..z2..z4..z3..cycle dashed evenly;
+endfig;
+#+END_SRC
 
-** Transformations
 
-We just saw one way of drawing a circle in metapost, we can also use the build in variable "fullcircle".
+* Transformations
+
+We just saw one way of drawing a circle in MetaPost, we can also use the build in variable =fullcircle=.
 Lets draw a two circles next to each other:
 
-> draw fullcircle;
-> draw fullcircle xshifted 2;
+#+BEGIN_SRC
+draw fullcircle;
+draw fullcircle shifted (1cm,0);
+#+END_SRC
 
-xshifted is an example of a transform that simply adds to every x coordinate in the transformed pairs.
-The commonly used transforms are shifted, rotated and scaled and the x/y variations of the first and last.
+{{< figure src="/images/transform_1.png" title="shifted transform." >}}
 
-Shifted is used to translate things around the coordinate system:
+=shifted= is an example of a transform, it simply adds a pair to every pair in the transformed path.
+Other commonly used transforms are =rotated= and =scaled= and =xscaled=,=yscaled=.
+=rotated= rotates pairs around the origin a given number of degrees counter-clockwise
 
-> draw fullcircle xshifted 2;
-> draw fullcircle yshifted 2;
-> draw fullcircle shifted 2;
+#+BEGIN_SRC
+z1 = (1,1);
+z2 = z1 rotated 90;
+#+END_SRC
 
-Rotated rotates a pair around the origin a given number of degrees counter-clockwise
-
-> drawarrow (1,1)--((1,1) rotated 90);
+{{< figure src="/images/transform_2.png" title="rotated transform." >}}
 
 Scaled simply multiplies the x, y or both coordinate with a given factor
 
-> draw fullcircle;
-> draw fullcircle xscaled 2;
-> draw fullcircle scaled 2;
+#+BEGIN_SRC
+u:=1cm;
+draw fullcircle scaled u;
+draw fullcircle scaled 1.5u;
+#+END_SRC
 
-*** Combining transforms
+{{< figure src="/images/transform_3.png" title="scaled transform." >}}
 
-We can combine transformations into transform variables, constructed by applying the transforms to the special variable "identity".
+** Combining transforms
 
-> Transform T;
-> T = identity xscaled -1 rotated 45;
+We can construct new transformations by combining existing combinations into a =Transform= variable.
+To start off use the special =identity= transform which does nothing on it's own.
 
-> draw fullcicle;
-> draw fullcircle transformed T;
+{{< figure src="/images/transform_4.png" title="Storing combined transforms." >}}
 
-** Exercies
+#+BEGIN_SRC
+beginfig(4);
+  u:=1cm;
+  transform T;
+  T = identity xscaled -1u yscaled 0.5u rotated 45;
+  draw fullcircle scaled u;
+  draw fullcircle transformed T;
+  draw fullcircle transformed T rotated 90;
+endfig;
+#+END_SRC
 
-You can specify the direction a curve enters and leaves a point at, by putting an angle or direction keywork in curly braces before or after the point
-in the path definition. For example:
 
-> beginfigure(1);
-> z1=(0,1);
-> z2=(1,0);
-> draw z1{down}..{right}z2;
+* Exercies
 
-Would draw a smooth line down from z1, turning left to enter z2 from the right. The directions are given
-along the travel of the path, so a curve entring by going down looks the same as one leaving by going up etc.
+You can specify the direction a path enters and leaves a point at, by putting a direction keyword (=left,right,up,down=)
+in curly braces before or after the point in the path definition. You can also specify a custom direction using =dir x= 
+where =x= is a an angle in degrees (moving counter clockwise with =dir 0= being straight to the right).
 
-> draw z2{down}..{right}z1;
-> draw z2{left}..{up}z1;
 
-The transform "relectedabout(p,q)" can be used to mirror images along the straight line from pair p to pair q.
+{{< figure src="/images/mirror_1.png" title="Path direction hints." >}}
+
+#+BEGIN_SRC
+beginfig(1);
+  z1=(0,1u);
+  z2=(1u,0);
+  dotlabel.top("z1",z1);
+  dotlabel.rt("z2",z2);
+  draw z1{down}..{dir 45}z2;
+endfig;
+#+END_SRC
+
+The directions are given along the travel direction of the path, so a curve entring a point by going down looks the same as one leaving by going up etc.
+
+The transform =relectedabout= /(p,q)/ can be used to mirror paths about the straight line from pair /p/ to pair /q/.
 
 Using this information along with what we have learned so far, try to draw an image like this:
 
-> mirror.mp
+{{< figure src="/images/mirror_2.png" title="Mirrors and stars" >}}
 
+*** Hint
+#+BEGIN_SRC
+outputformat := "png";
+outputtemplate := "%j_%c.png";
+hppp := 0.25;
+vppp := 0.25;
+u:=0.5cm;
+
+beginfig(1);
+  z0=-z1=(0,1u);
+  z2=-z3=(1u,0);
+  z4=(0,2u);
+  z5=(2u,0);
+
+  path p,m;
+  p:= z0{down}..{right}z2{left}..{down}z1{up}..{left}z3{right}..{up}z0;
+
+  m:= z4--z5;
+  draw p;
+  draw m dashed evenly;
+  draw p reflectedabout(z4,z5);
+endfig;
+#+END_SRC

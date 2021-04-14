@@ -1,6 +1,6 @@
 ---
 title: "Equations"
-date: 2021-04-01T21:15:26+02:00
+date: 2021-04-01T20:15:26+02:00
 draft: false
 ---
 * Equality operator
