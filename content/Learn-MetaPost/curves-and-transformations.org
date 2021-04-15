@@ -80,7 +80,7 @@ endfig;
 #+END_SRC
 
 
-* Exercies
+* Exercises
 
 You can specify the direction a path enters and leaves a point at, by putting a direction keyword (=left,right,up,down=)
 in curly braces before or after the point in the path definition. You can also specify a custom direction using =dir x= 
@@ -101,7 +101,7 @@ endfig;
 
 The directions are given along the travel direction of the path, so a curve entring a point by going down looks the same as one leaving by going up etc.
 
-The transform =relectedabout= /(p,q)/ can be used to mirror paths about the straight line from pair /p/ to pair /q/.
+The transform =reflectedabout= /(p,q)/ can be used to mirror paths about the straight line from pair /p/ to pair /q/.
 
 Using this information along with what we have learned so far, try to draw an image like this:
 

@@ -1,58 +1,8 @@
 ---
-title: "Loops Functions and Text"
+title: "Functions"
 date: 2021-03-28T23:15:51+02:00
 draft: true
 ---
-* Loops, functions and text
-
-** For loops
-
-in the session we will first have a look at the metapost for-loop.
-
-Lets start with a blank figure
-
-> beginfig 1;
-
-We can do a for loop on simple integers like this:
-
-> for i:=0 upto 10:
-> 	dotlabel("",(i,0));
-> endfor	
-
-the upto is a short macro for the call
-
-> for i:0 step 1 until 10:
-
-This full version allows us to work with decimal steps:
-
-> for i:0 0 step .1 until 1:
-> 	dotlabel("",(i,0));
-> endfor
-
-we can use the two functions normal-deviate and uniform deviate to add some random noise:
-
-> for i:0 0 step .1 until 1:
-> 	dotlabel("",(i,uniformdeviate(1)));
-> endfor
-
-But what do we do if we want to draw a smooth path through these points.
-Remember that paths start AND end with a pair. So one option is to do something like:
-
-> for i:0 0 step .1 until 0.9:
-> 	(i,uniformdeviate(1))..(i+0.1,uniformdeviate(1));
-> endfor
-
-Essentially duplicating the inner points.
-But it does not yield a smooth curve like we where looking for, secondly the random noise makes the duplicated appear in dirrerent locations.
-
-Fortunately metapost has a solution to this problem, for-loops can be embedded into path definitions.
-So we can draw the curve like this:
-
-> draw (0,uniformdeviate(1)) for i:0.1 step .1 until 1:
-> 	..(i,uniformdeviate(1));
-> endfor;
-
-We can use this kind of code to draw our own mathematical functions.
 
 ** Functions
 in this section we will define and draw a functions.
