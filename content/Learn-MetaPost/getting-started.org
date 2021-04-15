@@ -10,7 +10,7 @@ We will need a few things before we can start using MetaPost:
 2. A plain text editor, I'll be using notepad.
 3. A place to work. MetaPost will generate a few files, it is easier to see whats going on if you start your work in an empty folder.
    
-* Installing MeTapost
+* Installing MetaPost
 MetaPost is often used in conjunction with LaTeX and many TeX distributions include metapost. The simplest way to
 get MetaPost installed on your computer is to install one of the widely avaiable TeX distributions that include it. 
 Here we will use MikTeX:
