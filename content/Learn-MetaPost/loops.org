@@ -43,7 +43,7 @@ endfor;
 #+END_SRC
 
 Essentially drawing each segment of the function.
-However the random noise makes the duplicated appear in dirrerent locations.
+However the random noise makes the segments become disjointed.
 
 {{< figure src="/images/loop_3.png" title="Segmented paths." >}}
 
