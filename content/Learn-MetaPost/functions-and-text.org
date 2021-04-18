@@ -1,65 +1,106 @@
 ---
-title: "Functions"
+title: "Functions and text"
 date: 2021-03-28T23:15:51+02:00
-draft: true
+draft: false
 ---
 
-** Functions
-in this section we will define and draw a functions.
-Metapost doesn't really have the concept of a function, but it has variable macros that are essentailly the same.
+* Functions
+Metapost lets users define their own function through /variable macros/ hence the =vardef= keyword.
 
 Lets define and draw to probablility density function of the standard normal deviation.
 
-> vardef std_normal(expr x) = 
-> e:=2.71;
-> pi:=3.14;
-> 1/sqrt(2*pi)*(e**-((x/2)**2))
-> enddef;
+#+BEGIN_SRC
+vardef std_normal(expr x) = 
+  e:=2.7182;
+  pi:=3.1415;
+  (1/sqrt(2*pi))*(e**-((x**2)/2))
+enddef;
+#+END_SRC
 
-notice that ** has the same precedence as * in metapost so the paraneteses are needed.
+Notice that ** has the same precedence as * in metapost so the paraneteses are needed.
 
-Now we can use a for loop to draw the function
+Now we can use a [[./learn-metapost/loops][For loop]] to draw the function:
 
-> draw (-1,std_normal(-1)) for i:=-1.1 step 0.1 until 1: ..(i,std_normal(i));
-> endfor;
+{{< figure src="/images/functions_1.png" title="Normal distribution pdf." >}}
+
+#+BEGIN_SRC
+  draw ((-4,std_normal(-4)) for i:=-3.9 step 0.1 until 4:
+      ..(i,std_normal(i)) endfor) scaled 2u yscaled u;
+#+END_SRC
 
 this gets a bit long if we are drawing several functions, so lets define a macro to draw out math functions.
-In order to pass macros to macro we can use 'scantokens'. This tell metapost to interpret a string as if it was a metpost command.
+In order to pass macros to macro we can use 'scantokens'. This tell metapost to interpret a string as if it was a MetaPost command.
 Of course we then have to remember to pass our macros as strings.
 
-> vardef functionpath (expr func, a, b)=
- (a,scantokens func(a)) for i:=a step 1/(10(b-a)) until b: ..(i,scantokens func(i)) endfor;
+#+BEGIN_SRC
+vardef functionpath (expr func, a, b) =
+  ((a, scantokens func(a)) for i:=a step (1/(10(b-a))) until b:
+      ..(i,scantokens func(i)) endfor)
 enddef;
+#+END_SRC
 
-and replace our code with a call to this marcro:
+and replace our draw code with a call to the marcro, maybe in a for loop:
 
-> draw functionpath("std_normal",-1,1);
+#+BEING_SRC
+  for i:=0 upto 5:
+    draw functionpath("std_normal", -4, 4) scaled 2u yscaled u shifted (i*u,0);
+  endfor;
+#+END_SRC
 
-** Text
+{{< figure src="/images/functions_2.png" title="Calling functions in a loop." >}}
 
-As I said in the beginning metapost is often used to make figures for latex documents, but metapost is also using latex to
-typeset text. You can do some simple text as we have seen already by just putting in strings. But when you need to include variables
-in your strings, or just have more control of how the text looks we use latex to compile our text into images. There are a few diffenret ways
-to put input latex strings in your figures, but the one I find easiest and most powerful is the TEX.mp utility library.
+* Text
 
-TEX.mp is simply a metapost file thats is distributed with metapost, you should be able to load in into your session by including the line
+MetaPost is often used to make figures for LaTeX documents, but in turn  MetaPost also uses LaTeX to
+typeset text. You can do some simple text as we have seen already by just putting in strings. But if you need to include variables
+in your strings, or just have more control of how the text looks MetaPost uses LaTeX to compile our text into images. There are a few diffenret ways
+to put input LaTeX strings in your figures, but the one I find easiest and most powerful is with the =TEX.mp= utility library.
 
-> input TEX;
+=TEX.mp= is simply a MetaPost file thats is distributed with metapost, you should be able to load in into your session by including the line
 
-Once this file is loaded you can use the TEX function to typeset lables with latex commands.
+#+BEGIN_SRC
+input TEX;
+#+END_SRC
+
+Once this file is loaded you can use the =TEX= function to typeset lables with LaTeX commands.
+The =TEX= functin expects a LaTeX formatted string, to embed MetaPost variables into the string use =&= for appending and =decimal(x)= 
+to cast the =numeric= =x= into the =decimal= type which is compatible with string embedding.
 For example we can add a labeled x-axis to our figure:
 
-> drawarrow (-1.5,0)--(1.5,0);
-> for i:= -1.5 step 0.5 until 1.5:
-> label(TEX("$"&decimal(i)&"$"),(i,0));
-> endfor
+#+BEGIN_SRC
+drawarrow (-1.5,0)--(1.5,0);
+for i:= -1.5 step 0.5 until 1.5:
+label(TEX("$"&decimal(i)&"$"),(i,0));
+endfor
+#+END_SRC
 
-** Exercise 
+* Exercise 
 
-- Draw a grid like this
-- Draw your own math function on your grid 
-- Add some labels
+Define you own matematical function using =vardef= and draw it out, add some LaTeX formatted labels to your figure using the =TEX= command.
 
->grid.mp
+{{< figure src="/images/grid_1.png" title="Function on grid with labels." >}}
 
+** HINT
+   
+#+BEGIN_SRC
+outputformat := "png";
+outputtemplate := "%j_%c.png";
+hppp := 0.25;
+vppp := 0.25;
+u:=0.5cm;
+input TEX;
 
+vardef fun (expr x)=
+  (x**2)*u/10
+enddef;
+
+beginfig(1)
+  for i:=0 upto 10:
+    draw (0,i*u)--(10u,i*u);
+    draw (i*u,0)--(i*u,10u);
+    label.bot(TEX("$x_{"& decimal(i) &"}$"),(i*u,0));
+  endfor;
+  draw (0,0) for i:=1 upto 10: ..(i*u,fun(i)) endfor;
+endfig;
+end;
+#+END_SRC
