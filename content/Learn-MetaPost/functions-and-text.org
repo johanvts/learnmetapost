@@ -41,7 +41,7 @@ enddef;
 
 and replace our draw code with a call to the marcro, maybe in a for loop:
 
-#+BEING_SRC
+#+BEGIN_SRC
   for i:=0 upto 5:
     draw functionpath("std_normal", -4, 4) scaled 2u yscaled u shifted (i*u,0);
   endfor;
@@ -80,8 +80,7 @@ Define you own matematical function using =vardef= and draw it out, add some LaT
 
 {{< figure src="/images/grid_1.png" title="Function on grid with labels." >}}
 
-** HINT
-   
+** Hint
 #+BEGIN_SRC
 outputformat := "png";
 outputtemplate := "%j_%c.png";
