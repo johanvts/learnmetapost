@@ -5,9 +5,9 @@ draft: false
 ---
 
 * Functions
-Metapost lets users define their own function through /variable macros/ hence the =vardef= keyword.
+MetaPost lets users define their own functions through /variable macros/ using the =vardef= keyword.
 
-Lets define and draw to probablility density function of the standard normal deviation.
+Lets define and draw the probability density function of the standard normal deviation.
 
 #+BEGIN_SRC
 vardef std_normal(expr x) = 

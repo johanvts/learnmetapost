@@ -23,7 +23,7 @@ the =upto= form is shorthand for the full for loop syntax:
 
 This full version allows us to change the step size, but most of the time stepsize =1= is fine so =upto= comes in handy.
 For loops are also great for drawing functions, essentially by sampling our function at each step.
-As a start, lets call the =uniformdeviate= function for some liearly distributed noise:
+As a start, lets call the =uniformdeviate= function for some uniformly distributed noise:
 
 {{< figure src="/images/loop_2.png" title="step dependent noise." >}}
 
