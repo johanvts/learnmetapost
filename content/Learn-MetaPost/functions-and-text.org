@@ -29,8 +29,9 @@ Now we can use a [[./learn-metapost/loops][For loop]] to draw the function:
 #+END_SRC
 
 this gets a bit long if we are drawing several functions, so lets define a macro to draw out math functions.
-In order to pass macros to macro we can use 'scantokens'. This tell metapost to interpret a string as if it was a MetaPost command.
-Of course we then have to remember to pass our macros as strings.
+Since we don't have /functions/ as such, but only macros we can't easily pass fucntions as input into other functions. But there is a way.
+In order to pass macros to other macros we can use the =scantokens= /(string)/ function. 
+This tell MetaPost to interpret a /string/ as if it was a MetaPost command.
 
 #+BEGIN_SRC
 vardef functionpath (expr func, a, b) =
@@ -39,7 +40,8 @@ vardef functionpath (expr func, a, b) =
 enddef;
 #+END_SRC
 
-and replace our draw code with a call to the marcro, maybe in a for loop:
+We can then replace our draw code with a call to the marcro, maybe in a for loop. 
+Of course we now have to remember to pass our macro name as a string as expected by =scantokens=.
 
 #+BEGIN_SRC
   for i:=0 upto 5:
