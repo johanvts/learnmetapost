@@ -7,7 +7,7 @@ draft: false
 We will need a few things before we can start using MetaPost:
 
 1. A terminal of some sort. I will be using Powershell on Windows but really any shell/terminal/command prompt should be fine.
-2. A plain text editor, I'll be using notepad.
+2. A plain text editor, like notepad or emacs.
 3. A place to work. MetaPost will generate a few files, it is easier to see whats going on if you start your work in an empty folder.
    
 * Installing MetaPost
