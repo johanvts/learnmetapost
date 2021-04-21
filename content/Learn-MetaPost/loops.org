@@ -21,7 +21,7 @@ the =upto= form is shorthand for the full for loop syntax:
  for i:0 step 1 until 10:
 #+END_SRC
 
-This full version allows us to change the step size, but most of the time stepsize =1= is fine so =upto= comes in handy.
+This full version allows us to change the step size, but most of the time step size =1= is fine so =upto= comes in handy.
 For loops are also great for drawing functions, essentially by sampling our function at each step.
 As a start, lets call the =uniformdeviate= function for some uniformly distributed noise:
 

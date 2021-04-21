@@ -17,7 +17,7 @@ vardef std_normal(expr x) =
 enddef;
 #+END_SRC
 
-Notice that ** has the same precedence as * in metapost so the paraneteses are needed.
+Notice that ** has the same precedence as * in metapost so the parentheses are needed.
 
 Now we can use a [[./learn-metapost/loops][For loop]] to draw the function:
 
@@ -29,7 +29,7 @@ Now we can use a [[./learn-metapost/loops][For loop]] to draw the function:
 #+END_SRC
 
 this gets a bit long if we are drawing several functions, so lets define a macro to draw out math functions.
-Since we don't have /functions/ as such, but only macros we can't easily pass fucntions as input into other functions. But there is a way.
+Since we don't have /functions/ as such, but only macros we can't easily pass functions as input into other functions. But there is a way.
 In order to pass macros to other macros we can use the =scantokens= /(string)/ function. 
 This tell MetaPost to interpret a /string/ as if it was a MetaPost command.
 
@@ -40,7 +40,7 @@ vardef functionpath (expr func, a, b) =
 enddef;
 #+END_SRC
 
-We can then replace our draw code with a call to the marcro, maybe in a for loop. 
+We can then replace our draw code with a call to the macro, maybe in a for loop. 
 Of course we now have to remember to pass our macro name as a string as expected by =scantokens=.
 
 #+BEGIN_SRC
@@ -55,7 +55,7 @@ Of course we now have to remember to pass our macro name as a string as expected
 
 MetaPost is often used to make figures for LaTeX documents, but in turn  MetaPost also uses LaTeX to
 typeset text. You can do some simple text as we have seen already by just putting in strings. But if you need to include variables
-in your strings, or just have more control of how the text looks MetaPost uses LaTeX to compile our text into images. There are a few diffenret ways
+in your strings, or just have more control of how the text looks MetaPost uses LaTeX to compile our text into images. There are a few different ways
 to put input LaTeX strings in your figures, but the one I find easiest and most powerful is with the =TEX.mp= utility library.
 
 =TEX.mp= is simply a MetaPost file thats is distributed with metapost, you should be able to load in into your session by including the line
@@ -64,8 +64,8 @@ to put input LaTeX strings in your figures, but the one I find easiest and most 
 input TEX;
 #+END_SRC
 
-Once this file is loaded you can use the =TEX= function to typeset lables with LaTeX commands.
-The =TEX= functin expects a LaTeX formatted string, to embed MetaPost variables into the string use =&= for appending and =decimal(x)= 
+Once this file is loaded you can use the =TEX= function to typeset labels with LaTeX commands.
+The =TEX= function expects a LaTeX formatted string, to embed MetaPost variables into the string use =&= for appending and =decimal(x)= 
 to cast the =numeric= =x= into the =decimal= type which is compatible with string embedding.
 For example we can add a labeled x-axis to our figure:
 
@@ -78,7 +78,7 @@ endfor
 
 * Exercise 
 
-Define you own matematical function using =vardef= and draw it out, add some LaTeX formatted labels to your figure using the =TEX= command.
+Define you own mathematical function using =vardef= and draw it out, add some LaTeX formatted labels to your figure using the =TEX= command.
 
 {{< figure src="/images/grid_1.png" title="Function on grid with labels." >}}
 

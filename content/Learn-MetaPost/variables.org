@@ -15,7 +15,7 @@ These three make up the building blocks of most MetaPost figures.
 
 ** Numeric
 
-A numeric is simply a floating point number. We can declare and initalize a numeric like so 
+A numeric is simply a floating point number. We can declare and initialize a numeric like so 
 
 #+BEGIN_SRC
 numeric a;
@@ -26,14 +26,14 @@ For numerics we can actually skip the declaration as MetaPost will automatically
 
 ** Pair
 
-A pair is simply a touple containig two numerics. Pairs are hugely usefull as they describe positions in the 2d coordinate system
+A pair is simply a tuple containing two numerics. Pairs are hugely useful as they describe positions in the 2d coordinate system
 that is out main reference for locating things in metapost. Lets declared two points A and B like so:
 
 #+BEGIN_SRC
 pair A,B;
 #+END_SRC
 
-once decalred we can initialize A and B. 
+once declared we can initialize A and B. 
 
 #+BEGIN_SRC
 A := (1,1);

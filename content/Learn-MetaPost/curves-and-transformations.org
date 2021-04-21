@@ -99,7 +99,7 @@ beginfig(1);
 endfig;
 #+END_SRC
 
-The directions are given along the travel direction of the path, so a curve entring a point by going down looks the same as one leaving by going up etc.
+The directions are given along the travel direction of the path, so a curve entering a point by going down looks the same as one leaving by going up etc.
 
 The transform =reflectedabout= /(p,q)/ can be used to mirror paths about the straight line from pair /p/ to pair /q/.
 

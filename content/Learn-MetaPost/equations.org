@@ -7,9 +7,9 @@ draft: false
 
 MetaPost differs from many other programming languages in that it does not use === to assign values to variables, for that we use the assignment operator =:==.
 The equality operator  === is used, just as it is in mathematics, to declare that the right and left hand sides are equal.
-Whenever we write === we are specifying equations, and MetaPost will try to resolve them by assigning values to unknow variables to make the equality statement true.
+Whenever we write === we are specifying equations, and MetaPost will try to resolve them by assigning values to unknown variables to make the equality statement true.
 This difference can seem subtle at first: If we write an unassigned variable left of === the solution is simply to assign the value on the right, and thus === works just like =:== would.
-However, having a build in equation solver radically changes how programs are written and its a very powerfull component of the MetaPost programming language.
+However, having a build in equation solver radically changes how programs are written and its a very powerful component of the MetaPost programming language.
 
 Let's start with an example.
 Recall that =z1= is shorthand for =(x1,y1)= and try to run this file:
@@ -38,7 +38,7 @@ We can use =show= to make MetaPost print the value in its output.
 
 * Drawing a triangle
 
-The build-in equation solver is very usefull for drawing figures of mathematical concepts without having to assign absolute positions.
+The build-in equation solver is very useful for drawing figures of mathematical concepts without having to assign absolute positions.
 Consider a simple right triangle with points =A,B,C= and a right angle at =C=.
 If we didn't have an equation solver at hand we might specify something like:
 
@@ -50,7 +50,7 @@ A = C - (a,0);
 B = C + (0,b);
 #+END_SRC
 
-However, the right triangle as a concept is not really attaced to details like the lenght of the legs or it's position in the coordinate system.
+However, the right triangle as a concept is not really attached to details like the length of the legs or it's position in the coordinate system.
 So we can skip those details and just write:
 
 #+BEGIN_SRC
@@ -60,11 +60,11 @@ A = C - (a,0);
 B = C + (0,b);
 #+END_SRC
 
-To acutally draw the triangle we would still need to fill in the blanks of course, but when and how is entirely up to us.
+To actually draw the triangle we would still need to fill in the blanks of course, but when and how is entirely up to us.
 We might fix =a=,=b=, and =C= as in the first example, but we are also free to instead fix say =A,B= and =C=, or =A,B= and =a,b= or any other way.
 Whichever way we choose the remaining variables will be assigned by the equation solver and can be used elsewhere.
 
-By delaying these decision we can easily build complex figures that adapt to changes wih minimal work.
+By delaying these decision we can easily build complex figures that adapt to changes with minimal work.
 
 For example the only difference in the code for the left and right figure below is whether =G=C= or =G=A=.
 
@@ -102,7 +102,7 @@ endfig
 
 Make sure you understand how equality and negation was used to define the four corners of the cross.
 
-Now lets say we wanted to draw a horisontal line from the point of intersection.
+Now lets say we wanted to draw a horizontal line from the point of intersection.
 We could of course calculate where the two lines meet, but MetaPost will do it for us.
 The syntax =fraction[pair1,pair2]= denotes the point a =fraction= along the line from =pair1= to =pair2=.
 Using this syntax we specify a point =I= thats is at some fraction of both lines in the cross, the only solution being the intersection point.
