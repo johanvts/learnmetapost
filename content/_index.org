@@ -14,7 +14,7 @@ This course covers the basics of installing and using MetaPost assuming minimal 
 It is written as a step-by-step tutorial meant to be read from beginning to end, to get started go to [[https://www.learnmetapost.com/learn-metapost/getting-started/][Getting Started]].
 After completing the course you will be able to produce advanced graphics with MetaPost.
 There are however plenty of features of MetaPost we will not cover, for a full
-reference see the excellent [[https://www.tug.org/docs/metapost/mpman.pdf][MetaPost Manual]]. The course was written by [[https://www.johansivertsen.com][me]], if you have feedback or suggestion please use the
+reference see the excellent [[https://www.tug.org/docs/metapost/mpman.pdf][MetaPost Manual]]. The course was written by [[https://www.johansivertsen.com][me]], if you have feedback or suggestions please use the
 [[https://github.com/johanvts/learnmetapost][git repo]] to submit an issue or pull-request. I hope you have fun learning MetaPost.
 
 * [[https://www.learnmetapost.com/learn-metapost/getting-started/][>> Getting started <<]]
