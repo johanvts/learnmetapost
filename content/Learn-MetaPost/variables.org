@@ -5,7 +5,7 @@ draft: false
 ---
 * Variable types
 
-MetaPost uses 10 different types of variables. Here we will have a look at the tree most used
+MetaPost uses 10 different types of variables. Here we will have a look at the three most commonly used types:
 
 1. Numeric
 2. Pair

@@ -14,5 +14,5 @@ A first look at the MetaPost equation solver.
 Drawing curved paths and applying transformations.
 * [[./learn-metapost/loops][For loops]]
 Using for loops in MetaPost
-* [[./learn-metapost/functions-and-text/][Function and text]]
-Defining your own functions and formatting strings with =TEX=.
+* [[./learn-metapost/functions-and-text/][Functions and text]]
+  Defining your own functions and formatting strings with =TEX=.
