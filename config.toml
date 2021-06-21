@@ -2,12 +2,12 @@ baseURL = "https://learnmetapost.onrender.com/"
 languageCode = "en-us"
 title = "Learn MetaPost"
 theme = "hugo-theme-techdoc"
-googleAnalytics = "G-20EGJCEC1L"
 
 [params]
 
 menu_style = "open-menu"
 menu_exclusion = ["archives"]
+google_analytics_id = "270692315"
 
 [params.copyright]
 prefix = ""
