@@ -61,7 +61,7 @@ B = C + (0,b);
 #+END_SRC
 
 To actually draw the triangle we would still need to fill in the blanks of course, but when and how is entirely up to us.
-We might fix =a=,=b=, and =C= as in the first example, but we are also free to instead fix say =A,B= and =C=, or =A,B= and =a,b= or any other way.
+We might fix =a=, =b=, and =C= as in the first example, but we are also free to instead fix say =A,B= and =C=, or =A,B= and =a,b= or any other way.
 Whichever way we choose the remaining variables will be assigned by the equation solver and can be used elsewhere.
 
 By delaying these decision we can easily build complex figures that adapt to changes with minimal work.
