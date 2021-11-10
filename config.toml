@@ -7,7 +7,7 @@ theme = "hugo-theme-techdoc"
 
 menu_style = "open-menu"
 menu_exclusion = ["archives"]
-google_analytics_id = "270692315"
+google_analytics_id = "G-8P10XNPPY3"
 
 [params.copyright]
 prefix = ""
