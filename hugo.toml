@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = "https://johanvts.github.io/learnmetapost/"
 languageCode = 'en-us'
 title = 'Learn MetaPost'
 theme = "hugo-theme-techdoc"
