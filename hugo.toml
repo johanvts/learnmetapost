@@ -1,13 +1,12 @@
-baseURL = "https://learnmetapost.onrender.com/"
-languageCode = "en-us"
-title = "Learn MetaPost"
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Learn MetaPost'
 theme = "hugo-theme-techdoc"
 
 [params]
 
 menu_style = "open-menu"
 menu_exclusion = ["archives"]
-google_analytics_id = "G-8P10XNPPY3"
 
 [params.copyright]
 prefix = ""

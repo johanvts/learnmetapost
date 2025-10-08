@@ -17,6 +17,6 @@ There are however plenty of features of MetaPost we will not cover, for a full
 reference see the excellent [[https://www.tug.org/docs/metapost/mpman.pdf][MetaPost Manual]]. The course was written by [[https://www.johansivertsen.com][me]], if you have feedback or suggestions please use the
 [[https://github.com/johanvts/learnmetapost][git repo]] to submit an issue or pull-request. I hope you have fun learning MetaPost.
 
-* [[https://www.learnmetapost.com/learn-metapost/getting-started/][>> Getting started <<]]
+* [[{{< relref "Learn-Metapost/getting-started.org">}}][>> Getting started <<]]
 
 {{< figure src="/images/lsh.png" title="LSH explanation graph drawn with MetaPost." >}}
