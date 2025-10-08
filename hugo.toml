@@ -13,3 +13,7 @@ prefix = ""
 holder = "Johan Sivertsen"
 startYear = "2015"
 suffix = ""
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
